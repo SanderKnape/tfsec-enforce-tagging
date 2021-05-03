@@ -1,0 +1,19 @@
+---
+checks:
+  - code: CUS001
+    description: Check if the AWS provider has the default "Application" tag set for all supported resources.
+    requiredTypes:
+      - provider
+    requiredLabels:
+      - aws
+    severity: ERROR
+    matchSpec:
+      name: default_tags
+      action: isPresent
+      subMatch:
+        name: tags
+        action: contains
+        value: Application
+    errorMessage: The Application tag in the "default_tags" configuration of the AWS provider was missing.
+    relatedLinks:
+      - https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags
